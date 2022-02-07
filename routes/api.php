@@ -14,17 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'user/oauth2'], function () {
+Route::group(['prefix' => 'user/oauth'], function () {
 
     Route::post('login',  [App\Http\Controllers\AuthController::class, 'login']);
-
-    Route::post('signup', [App\Http\Controllers\AuthController::class,'signup']);
+    Route::post('signup', [App\Http\Controllers\AuthController::class, 'signup']);
+    Route::post('forgotPassword',     [App\Http\Controllers\AuthController::class, 'forgot_password']);
+    Route::post('resetPassword',      [App\Http\Controllers\AuthController::class, 'reset_password']);
 
     Route::group(['middleware' => 'auth:api'], function () {
-
-        Route::get('logout', [App\Http\Controllers\AuthController::class,'logout']);
-
-        Route::get('user', [App\Http\Controllers\AuthController::class,'user']);
+        Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout']);
+        Route::get('user', [App\Http\Controllers\AuthController::class, 'user']);
+        Route::post('changePassword',     [App\Http\Controllers\AuthController::class, 'change_password']);
     });
 });
 
