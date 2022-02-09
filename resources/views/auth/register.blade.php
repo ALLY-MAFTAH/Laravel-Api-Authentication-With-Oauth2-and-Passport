@@ -12,36 +12,23 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
+                            <label for="fullname" class="col-md-4 col-form-label text-md-end">{{ __('Full Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('first_name')
+                                <input id="fullname" type="text" class="form-control @error('fullname') is-invalid @enderror" name="fullname" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                @error('fullname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="last_name" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('last_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="row mb-3">
                             <label for="mobile" class="col-md-4 col-form-label text-md-end">{{ __('Mobile') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="telephone" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="mobile" type="telephone" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autocomplete="phone" autofocus>
 
                                 @error('mobile')
                                     <span class="invalid-feedback" role="alert">

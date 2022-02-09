@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Notifications\ResetPasswordOTP;
 use Illuminate\Support\Facades\Notification;
 
-class AuthController extends Controller
+class ApiAuthController extends Controller
 {
     /**
      * Create user
@@ -29,14 +29,11 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(),  [
 
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'mobile' => 'required',
+            'fullname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'device_type' => 'required|in:android,ios',
             'password' => 'required|min:6|string|confirmed',
-            'login_by' => 'required|in:manual,facebook,google,github',
-            'social_unique_id' => ['required_if:login_by,facebook,google,github', 'unique:users'],
+            'login_by' => 'required|in:manual,facebook,google,github,twitter',
             'device_token' => 'required',
             'device_id' => 'required',
 

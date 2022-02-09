@@ -18,7 +18,7 @@ class MailResetPasswordNotification extends ResetPassword
     public function __construct($token)
     {
         parent::__construct($token);
-        $this->pageUrl = 'localhost:8080';
+        $this->pageUrl = 'http://baseapiauth.test';
             // we can set whatever we want here, or use .env to set environmental variables
         }
     /**

@@ -14,25 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'user/oauth'], function () {
+Route::group(['prefix' => 'user/'], function () {
 
-    Route::post('login',  [App\Http\Controllers\AuthController::class, 'login']);
-    Route::post('signup', [App\Http\Controllers\AuthController::class, 'signup']);
-    Route::post('forgotPassword',     [App\Http\Controllers\AuthController::class, 'forgot_password']);
-    Route::post('resetPassword',      [App\Http\Controllers\AuthController::class, 'reset_password']);
+    Route::post('oauth/login',  [App\Http\Controllers\ApiAuthController::class, 'login']);
+    Route::post('oauth/signup', [App\Http\Controllers\ApiAuthController::class, 'signup']);
+    Route::post('oauth/forgotPassword',     [App\Http\Controllers\ApiAuthController::class, 'forgot_password']);
+    Route::post('oauth/resetPassword',      [App\Http\Controllers\ApiAuthController::class, 'reset_password']);
+
+    // Social Auth
+    Route::get('oauth/social', [App\Http\Controllers\SocialAuthController::class, 'show']);
+    Route::get('oauth/{driver}', [App\Http\Controllers\SocialAuthController::class, 'redirectToProvider']);
+    Route::get('oauth/{driver}/callback', [App\Http\Controllers\SocialAuthController::class, 'handleProviderCallback']);
 
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout']);
-        Route::get('user', [App\Http\Controllers\AuthController::class, 'user']);
-        Route::post('changePassword',     [App\Http\Controllers\AuthController::class, 'change_password']);
+        Route::post('oauth/logout', [App\Http\Controllers\ApiAuthController::class, 'logout']);
+        Route::post('oauth/user', [App\Http\Controllers\ApiAuthController::class, 'user']);
+        Route::post('oauth/changePassword',     [App\Http\Controllers\ApiAuthController::class, 'change_password']);
     });
 });
-
-
-
-// ****** WHAT I FOUND
-
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });

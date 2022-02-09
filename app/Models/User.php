@@ -20,8 +20,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
+
+        'fullname',
         'mobile',
         'email',
         'password',
@@ -29,7 +29,10 @@ class User extends Authenticatable
         'device_type',
         'device_token',
         'login_by',
-        'social_unique_id',
+        'avatar',
+        'provider',
+        'provider_id',
+        'access_token'
 
     ];
 
@@ -53,7 +56,7 @@ class User extends Authenticatable
     ];
 
     public function sendPasswordResetNotification($token)
-{
-    $this->notify(new \App\Notifications\MailResetPasswordNotification($token));
-}
+    {
+        $this->notify(new \App\Notifications\MailResetPasswordNotification($token));
+    }
 }
