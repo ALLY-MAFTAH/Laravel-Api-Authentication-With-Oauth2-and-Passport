@@ -16,19 +16,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'user/'], function () {
 
-    Route::post('oauth/login',  [App\Http\Controllers\ApiAuthController::class, 'login']);
-    Route::post('oauth/signup', [App\Http\Controllers\ApiAuthController::class, 'signup']);
-    Route::post('oauth/forgotPassword',     [App\Http\Controllers\ApiAuthController::class, 'forgot_password']);
-    Route::post('oauth/resetPassword',      [App\Http\Controllers\ApiAuthController::class, 'reset_password']);
+    Route::post('oauth2/login', [App\Http\Controllers\ApiAuthController::class, 'login']);
+    Route::post('oauth2/signup', [App\Http\Controllers\ApiAuthController::class, 'signup']);
+    Route::post('oauth2/forgotPassword', [App\Http\Controllers\ApiAuthController::class, 'forgot_password']);
+    Route::post('oauth2/resetPassword', [App\Http\Controllers\ApiAuthController::class, 'reset_password']);
 
     // Social Auth
-    Route::get('oauth/social', [App\Http\Controllers\SocialAuthController::class, 'show']);
-    Route::get('oauth/{driver}', [App\Http\Controllers\SocialAuthController::class, 'redirectToProvider']);
-    Route::get('oauth/{driver}/callback', [App\Http\Controllers\SocialAuthController::class, 'handleProviderCallback']);
+    Route::post('/social/oauth2/{driver}', [App\Http\Controllers\SocialAuthController::class, 'socialViaAPI']);
+    // Route::get('oauth2/{driver}', [App\Http\Controllers\SocialAuthController::class, 'redirectToProvider']);
+    // Route::get('oauth2/{driver}/callback', [App\Http\Controllers\SocialAuthController::class, 'handleProviderCallback']);
+
 
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::post('oauth/logout', [App\Http\Controllers\ApiAuthController::class, 'logout']);
-        Route::post('oauth/user', [App\Http\Controllers\ApiAuthController::class, 'user']);
-        Route::post('oauth/changePassword',     [App\Http\Controllers\ApiAuthController::class, 'change_password']);
+        Route::post('oauth2/logout', [App\Http\Controllers\ApiAuthController::class, 'logout']);
+        Route::post('oauth2/user', [App\Http\Controllers\ApiAuthController::class, 'user']);
+        Route::post('oauth2/changePassword', [App\Http\Controllers\ApiAuthController::class, 'change_password']);
     });
 });
